@@ -24,7 +24,7 @@
 import Foundation
 
 /// A class to parse `Playlist` objects from a `PlaylistSource`.
-public final class PlaylistParser: Parser {
+@objc public final class PlaylistParser: Parser {
   enum ParsingError: LocalizedError {
     case invalidSource
 
@@ -34,12 +34,12 @@ public final class PlaylistParser: Parser {
   }
 
   /// Create a new parser.
-  public init() {}
+@objc public init() {}
 
   /// Parse a playlist.
   /// - Parameter input: source.
   /// - Returns: playlist.
-  public func parse(_ input: PlaylistSource) throws -> Playlist {
+@objc public func parse(_ input: PlaylistSource) throws -> Playlist {
     let rawString = try extractRawString(from: input)
 
     var medias: [Playlist.Media] = []
@@ -83,7 +83,7 @@ public final class PlaylistParser: Parser {
   /// - Parameters:
   ///   - input: source.
   ///   - handler: Handler to be called with the parsed medias.
-  public func walk(
+@objc public func walk(
     _ input: PlaylistSource,
     handler: @escaping (Playlist.Media) -> Void
   ) throws {
@@ -127,7 +127,7 @@ public final class PlaylistParser: Parser {
   ///   - processingQueue: queue to perform parsing on. Defaults to `.global(qos: .background)`
   ///   - callbackQueue: queue to call callback on. Defaults to `.main`
   ///   - completion: completion handler to call with the result.
-  public func parse(
+@objc public func parse(
     _ input: PlaylistSource,
     processingQueue: DispatchQueue = .global(qos: .background),
     callbackQueue: DispatchQueue = .main,
@@ -152,7 +152,7 @@ public final class PlaylistParser: Parser {
   /// - Parameter input: source.
   /// - Parameter priority: Processing task priority. Defaults to `.background`
   /// - Returns: playlist.
-  public func parse(
+@objc  public func parse(
     _ input: PlaylistSource,
     priority: TaskPriority = .background
   ) async throws -> Playlist {
